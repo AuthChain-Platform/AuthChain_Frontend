@@ -5,8 +5,8 @@ const LandingPageii = () => {
   return (
     <div className="flex flex-col items-center p-16">
       {/* First Section */}
-      <div className="flex flex-col items-center w-3/4 text-center mb-8">
-        <h1 className="text-4xl font-semibold text-[#2711F1] mb-4">
+      <div className="flex flex-col items-center w-[89%] text-center mb-10">
+        <h1 className="text-4xl font-medium text-[#2711F1] mb-8">
           Why Authentic Chain?
         </h1>
         <p className="text-lg text-gray-700">
@@ -79,6 +79,15 @@ const LandingPageii = () => {
             Read More
           </Button>
         </div>
+      </div>
+
+      <div className="flex flex-col items-center w-[87%] text-center mb-10">
+        <h1 className="text-4xl font-medium text-[#2711F1] mb-8">
+        How it works
+        </h1>
+        <p className="text-lg text-gray-700">
+        Authentic Chain addresses the critical need for reliable product authentication in the global market. By leveraging Layer 2 blockchain technology, the solution provides a scalable, cost-effective way to combat counterfeiting while building consumer trust and brand value. The platform leverages Layer 2 blockchain technology (Optimism/Arbitrum) to provide a scalable, cost-effective solution for brands and consumers
+        </p>
       </div>
     </div>
   );
