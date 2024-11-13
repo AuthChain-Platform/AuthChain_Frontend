@@ -5,7 +5,7 @@ const LandingPageii = () => {
   return (
     <div>
       <div className="flex flex-col items-center p-16">
-        {/* First Section */}
+       
         <div className="flex flex-col items-center w-[89%] text-center mb-10">
           <h1 className="text-4xl font-medium text-[#2711F1] mb-8">
             Why Authentic Chain?
