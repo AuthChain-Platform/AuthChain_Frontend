@@ -100,14 +100,14 @@ const LandingPageii = () => {
         </div>
       </div>
 
-      <div className="w-full bg-[#2711F1] p-4">
-        <div className="flex flex-col items-center w-[74%] text-center mb-10 mx-auto">
-          <p className="text-2xl font-semibold text-white">
+      <div className="w-full bg-[#2711F1] py-5">
+        <div className="flex flex-col items-center w-[74%] text-center mx-auto">
+          <p className="text-2xl font-semibold text-white mb-8">
             Just want to Verify the Authenticity of a Product? Click on the Scan
             Button below
           </p>
           <Button className="bg-white text-[#2711F1] rounded-[20px] w-full lg:w-[20%] xl:w-[15%]">
-              Read More
+              Scan Here
             </Button>
         </div>
       </div>
