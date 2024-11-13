@@ -84,7 +84,7 @@ const LandingPageii = () => {
           </div>
         </div>
 
-        <div className="flex flex-col items-center w-[87%] text-center mb-10">
+        <div className="flex flex-col items-center w-[87%] text-center mb-3">
           <h1 className="text-4xl font-medium text-[#2711F1] mb-8">
             How it works
           </h1>
@@ -106,9 +106,35 @@ const LandingPageii = () => {
             Just want to Verify the Authenticity of a Product? Click on the Scan
             Button below
           </p>
-          <Button className="bg-white text-[#2711F1] rounded-[20px] w-full lg:w-[20%] xl:w-[15%]">
-              Scan Here
+          <Button className="bg-white font-semibold text-[#2711F1] rounded-[20px] w-full lg:w-[20%] xl:w-[15%]">
+            Scan Here
+          </Button>
+        </div>
+      </div>
+
+      <div className="flex flex-col items-center p-16 mt-2">
+        <div
+          className="bg-cover bg-center rounded-[20px] flex flex-col items-center justify-center text-center p-10"
+          style={{ backgroundImage: "url('/image.png')" }}
+        >
+          <p className="text-3xl font-semibold text-white mb-4">
+            Start your Journey with Authentic Chain today
+          </p>
+          <p className="text-l w-[77%] font-light text-white">
+            If you have any questions, requests, or are interested in working
+            with us, please let us know what your needs are, and a team member
+            will reach out to you!
+          </p>
+          <div className="flex flex-row space-x-4 mt-8">
+            <input
+              type="email"
+              placeholder="Your email"
+              className="px-4 border border-gray-300 rounded-[15px] w-[300px] focus:outline-none focus:ring-2 focus:ring-blue-500"
+            />
+            <Button className="bg-[#2711F1] font-semibold text-white rounded-[20px] w-full lg:w-[40%] xl:w-[15%]">
+              Request a Demo
             </Button>
+          </div>
         </div>
       </div>
     </div>
