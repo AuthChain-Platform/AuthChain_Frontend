@@ -2,7 +2,14 @@ import React from 'react'
 
 const Footer = () => {
   return (
-    <div>Footer</div>
+    <div>
+<div className='flex flex-row'>
+<div>
+    
+</div>
+</div>
+
+    </div>
   )
 }
 
