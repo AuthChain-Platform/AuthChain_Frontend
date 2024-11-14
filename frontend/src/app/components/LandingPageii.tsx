@@ -26,14 +26,12 @@ const LandingPageii = () => {
             className="w-full lg:w-1/3 xl:w-1/2 h-auto lg:h-full object-cover rounded-lg mb-4 lg:mb-0"
           />
           <div className="flex flex-col text-left h-full">
-            <p className="text-3xl text-[#2711F1] font-light mb-7">
-              Combat Counterfeiting
+            <p className="text-3xl font-light mb-7">
+            Bolstering Product Authenticity
+            and Consumer Trust
             </p>
             <p className="text-xl text-gray-700 w-full lg:w-[90%] xl:w-[80%] mb-14">
-              Implementing tamper-proof identification and creating a verifiable
-              product history, we enable instant authenticity verification for
-              secure and transparent product tracking. This ensures
-              .....................
+            By implementing robust anti-counterfeiting measures, we safeguard your brand reputation and protect consumers from counterfeit goods.
             </p>
             <Button className="bg-[#2711F1] text-white rounded-[20px] w-full lg:w-[20%] xl:w-[15%]">
               Read More
