@@ -2,7 +2,7 @@ import { Button } from "@/components/ui/button";
 import React from "react";
 import { UserGroupIcon } from "@heroicons/react/24/outline";
 import { CheckCircleIcon } from "@heroicons/react/24/outline";
-import { User } from "lucide-react";
+import { BuildingOffice2Icon } from "@heroicons/react/24/outline";
 
 const LandingPageii = () => {
   return (
@@ -74,22 +74,38 @@ const LandingPageii = () => {
         </div>
       </div>
 
-      <div className="p-16 bg-[#E8E8E8]">
-        <div className="flex flex-col items-center w-[89%] text-center mb-10">
-          <h1 className="text-4xl font-medium mb-6">How It Works</h1>
-          <p className="text-l text-gray-700 w-[78%] mb-10">
+      <div className="p-14 bg-[#E8E8E8]">
+        <div className="flex flex-col items-center  text-center mb-10">
+          <h1 className="text-4xl font-semibold mb-6">How It Works</h1>
+          <p className="text-l text-gray-700 w-[68%] mb-14">
             Our user-friendly platform simplifies product authentication. With
             just a few clicks, you can verify the authenticity of any product,
             anytime, anywhere.
           </p>
-          <div className="flex flex-row">
-            <div className="bg-[#F3F3F3] flex flex-col items-center py-5">
-              <UserGroupIcon className="h-10 w-10 rounded-[10px] p-1 bg-[#CDDDE8] text-[#007BFF] mb-2" />
+          <div className="flex flex-row items-center space-x-14">
+            <div className="bg-[#F3F3F3] flex flex-col w-[36%] items-center py-5 h-56 rounded-[8px]">
+              <UserGroupIcon className="h-10 w-10 rounded-[10px] p-1 bg-[#CDDDE8] text-[#007BFF] mb-5" />
               <p className=" text-xl font-semibold mb-3">
                 Brands Register <br /> Products
               </p>
-              <p className="text-l w-[70%]">
+              <p className="text-l w-[95%] text-[#343434]">
                 Securely register your products on our platform.
+              </p>
+            </div>
+            <div className="bg-[#F3F3F3] flex flex-col w-[36%] items-center py-5 h-56 rounded-[8px]">
+              <BuildingOffice2Icon className="h-10 w-10 rounded-[10px] p-1 bg-[#CDDDE8] text-[#007BFF] mb-5" />
+              <p className=" text-xl font-semibold mb-3">Record Product Data</p>
+              <p className="text-l w-[95%] text-[#343434]">
+                Create an immutable record of your product's journey.
+              </p>
+            </div>
+            <div className="bg-[#F3F3F3] flex flex-col w-[36%] items-center py-5 h-56 rounded-[8px]">
+              <CheckCircleIcon className="h-10 w-10 rounded-[10px] p-1 bg-[#CDDDE8] text-[#007BFF] mb-5" />
+              <p className=" text-xl font-semibold mb-3">
+                Instant Verification
+              </p>
+              <p className="text-l w-[95%] text-[#343434]">
+                Scan the QR code to confirm authenticity in seconds
               </p>
             </div>
           </div>
@@ -97,27 +113,18 @@ const LandingPageii = () => {
       </div>
 
       <div
-        className="bg-cover bg-center flex flex-col items-center justify-center text-center p-20"
+        className="bg-fit bg-center flex flex-col items-center justify-center text-center py-24 px-20 "
         style={{ backgroundImage: "url('/image.png')" }}
       >
         <p className="text-3xl font-semibold text-white mb-4">
-          Start your Journey with Authentic Chain today
+          Ready to Elevate Your <br /> Brand’s Security
         </p>
-        <p className="text-l w-[77%] font-light text-white">
-          If you have any questions, requests, or are interested in working with
-          us, please let us know what your needs are, and a team member will
-          reach out to you!
+        <p className="text-l w-[77%] font-light text-white mb-10">
+        Join the network of forward-thinking brands <br />using Authentic Chain
         </p>
-        <div className="flex flex-row space-x-4 mt-8">
-          <input
-            type="email"
-            placeholder="Your email"
-            className="px-4 border border-gray-300 rounded-[15px] w-[300px] focus:outline-none focus:ring-2 focus:ring-blue-500"
-          />
-          <Button className="bg-[#2711F1] font-semibold text-white rounded-[20px] w-full lg:w-[40%] xl:w-[15%]">
-            Request a Demo
-          </Button>
-        </div>
+        <Button className="bg-white text-black rounded-[20px] w-full lg:w-[20%] xl:w-[15%] ">
+              Start Now
+            </Button>
       </div>
     </div>
   );
