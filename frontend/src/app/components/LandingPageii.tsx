@@ -3,10 +3,46 @@ import React from "react";
 import { UserGroupIcon } from "@heroicons/react/24/outline";
 import { CheckCircleIcon } from "@heroicons/react/24/outline";
 import { BuildingOffice2Icon } from "@heroicons/react/24/outline";
+import { Leaf } from "lucide-react";
+import { BadgeCheck } from "lucide-react";
+import { ShieldCheck } from "lucide-react";
+import { Star } from "lucide-react";
 
 const LandingPageii = () => {
   return (
     <div>
+      <div className="bg-[#F5F7FA]">
+        <div className="flex flex-row space-x-12">
+          <div className="flex flex-col">
+            <p className="text-xl font-medium">
+              Optimizing Supply Chains <br />{" "}
+              <span className="text-xl text-[#4880FF]">
+                {" "}
+                for a Sustainable Future
+              </span>{" "}
+            </p>
+            <p>Driving Sustainability Through Supply Chain Innovation</p>
+          </div>
+          <div>
+            <div className="flex flex-col space-y-10">
+              <div className="flex flex-row items-center space-x-3">
+                <Leaf className="h-12 w-12 text-[#007BFF] " />
+                <div className="flex flex-col">
+                  <p className="text-3xl font-semibold mb-1">70%</p>
+                  <p className="text-md text-[#717171]">Sustainability</p>
+                </div>
+              </div>
+              <div className="flex flex-row items-center space-x-3">
+                <ShieldCheck className="h-12 w-12 text-[#007BFF] " />
+                <div className="flex flex-col">
+                  <p className="text-3xl font-semibold mb-1">95%</p>
+                  <p className="text-md text-[#717171]">Sustainability</p>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
       <div className="flex flex-col items-center p-16">
         <div className="flex flex-col lg:flex-row items-center lg:items-stretch space-x-12 p-4 mb-5">
           <img
@@ -120,11 +156,12 @@ const LandingPageii = () => {
           Ready to Elevate Your <br /> Brand’s Security
         </p>
         <p className="text-l w-[77%] font-light text-white mb-10">
-        Join the network of forward-thinking brands <br />using Authentic Chain
+          Join the network of forward-thinking brands <br />
+          using Authentic Chain
         </p>
         <Button className="bg-white text-black rounded-[20px] w-full lg:w-[20%] xl:w-[15%] ">
-              Start Now
-            </Button>
+          Start Now
+        </Button>
       </div>
     </div>
   );
