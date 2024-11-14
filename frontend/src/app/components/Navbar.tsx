@@ -1,4 +1,3 @@
-// src/components/layout/Navbar.tsx
 import React from 'react';
 import {  Scan } from "lucide-react";
 import Image from 'next/image';
