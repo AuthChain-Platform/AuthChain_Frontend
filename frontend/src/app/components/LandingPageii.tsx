@@ -1,5 +1,8 @@
 import { Button } from "@/components/ui/button";
 import React from "react";
+import { UserGroupIcon } from "@heroicons/react/24/outline";
+import { CheckCircleIcon } from "@heroicons/react/24/outline";
+import { User } from "lucide-react";
 
 const LandingPageii = () => {
   return (
@@ -73,16 +76,22 @@ const LandingPageii = () => {
 
       <div className="p-16 bg-[#E8E8E8]">
         <div className="flex flex-col items-center w-[89%] text-center mb-10">
-          <h1 className="text-4xl font-medium text-[#2711F1] mb-8">
-            How It Works
-          </h1>
-          <p className="text-l text-gray-700 w-[78%]">
+          <h1 className="text-4xl font-medium mb-6">How It Works</h1>
+          <p className="text-l text-gray-700 w-[78%] mb-10">
             Our user-friendly platform simplifies product authentication. With
             just a few clicks, you can verify the authenticity of any product,
             anytime, anywhere.
           </p>
-          <div>
-            
+          <div className="flex flex-row">
+            <div className="bg-[#F3F3F3] flex flex-col items-center py-5">
+              <UserGroupIcon className="h-10 w-10 rounded-[10px] p-1 bg-[#CDDDE8] text-[#007BFF] mb-2" />
+              <p className=" text-xl font-semibold mb-3">
+                Brands Register <br /> Products
+              </p>
+              <p className="text-l w-[70%]">
+                Securely register your products on our platform.
+              </p>
+            </div>
           </div>
         </div>
       </div>
