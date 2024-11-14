@@ -25,16 +25,16 @@ const LandingPageii = () => {
             alt="Combat Counterfeiting"
             className="w-full lg:w-1/3 xl:w-1/2 h-auto lg:h-full object-cover rounded-lg mb-4 lg:mb-0"
           />
-          <div className="flex flex-col text-left h-full">
-            <p className="text-3xl font-light mb-7">
+          <div className="flex flex-col text-left justify-center">
+            <p className="text-3xl font-semibold mb-7 w-[90%]">
             Bolstering Product Authenticity
             and Consumer Trust
             </p>
-            <p className="text-xl text-gray-700 w-full lg:w-[90%] xl:w-[80%] mb-14">
+            <p className="text-l text-gray-700 w-full lg:w-[85%] xl:w-[80%] mb-14">
             By implementing robust anti-counterfeiting measures, we safeguard your brand reputation and protect consumers from counterfeit goods.
             </p>
-            <Button className="bg-[#2711F1] text-white rounded-[20px] w-full lg:w-[20%] xl:w-[15%]">
-              Read More
+            <Button className="bg-white text-[#4880FF] rounded-[20px] w-full lg:w-[20%] xl:w-[15%] border border-[#4880FF]">
+              Get Started
             </Button>
           </div>
         </div>
