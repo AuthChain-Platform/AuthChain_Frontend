@@ -12,7 +12,7 @@ const LandingPageii = () => {
   return (
     <div>
       <div className="bg-[#F5F7FA]">
-        <div className="flex flex-row space-x-12 py-10 items-center justify-center">
+        <div className="flex flex-row space-x-12 xl:space-x-36 py-10 items-center justify-center">
           <div className="flex flex-col">
             <p className="text-3xl font-semibold mb-2">
               Optimizing Supply Chains <br />{" "}
