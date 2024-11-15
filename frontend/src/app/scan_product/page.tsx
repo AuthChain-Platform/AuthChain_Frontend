@@ -1,3 +1,4 @@
+import { Button } from '@/components/ui/button'
 import React from 'react'
 
 const page = () => {
@@ -9,6 +10,17 @@ const page = () => {
     <p className='text-l'>
         Scan a product to verify its authenticity and track its journey through the supply chain
     </p>
+    <div>
+        <div>
+            <Button>Manual</Button>
+            <Button>Barcode QR Scanner</Button>
+        </div>
+        <div className='flex flex-col'>
+            <p>Product ID</p>
+            <input />
+            <Button>Track Product</Button>
+        </div>
+    </div>
 </div>
 </div>
 
