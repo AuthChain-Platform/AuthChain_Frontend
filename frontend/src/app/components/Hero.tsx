@@ -1,8 +1,18 @@
+'use client'
+
 import React from 'react';
 import Image from 'next/image';
 import { Button } from "@/components/ui/button";
+import { useRouter } from "next/navigation";
 
 const Hero = () => {
+  const router = useRouter();
+
+  const handleClick = () => {
+    router.push("/scan_product");
+  };
+
+
   return (
     <div className="relative h-[600px]">
       <Image
@@ -30,7 +40,7 @@ const Hero = () => {
             <Button className="bg-blue-600 hover:bg-blue-700 text-lg px-8 py-6 rounded-3xl">
               Get Started
             </Button>
-            <Button variant="outline" className="bg-white text-lg px-8 py-6 rounded-3xl">
+            <Button  variant="outline" className="bg-white text-lg px-8 py-6 rounded-3xl" onClick={handleClick}>
               Scan Products
             </Button>
           </div>
