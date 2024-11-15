@@ -1,9 +1,19 @@
-import React from 'react'
+import React from 'react';
+import Sidebar from '../components/sidebar';
+import DashboardHeader from '../components/dashboard-header';
 
-const layout = () => {
+export default function DashboardLayout({
+  children,
+}: {
+  children: React.ReactNode;
+}) {
   return (
-    <div>layout loyout</div>
-  )
+    <div className="min-h-screen bg-gray-100"> {/* Darker gray background */}
+      <Sidebar />
+      <div className="pl-64">
+        <DashboardHeader />
+        {children}
+      </div>
+    </div>
+  );
 }
-
-export default layout
