@@ -1,9 +1,20 @@
+'use client'
+
 import React from 'react';
 import {  Scan } from "lucide-react";
 import Image from 'next/image';
 import { Button } from "@/components/ui/button";
+import { useRouter } from "next/navigation";
 
 const Navbar = () => {
+
+  const router = useRouter();
+
+  const handleClick = () => {
+    router.push("/scan_product");
+  };
+
+
   return (
     <nav className="flex items-center justify-between px-6 py-4 bg-white">
       <div className="flex items-center">
@@ -26,10 +37,14 @@ const Navbar = () => {
       </div>
       
       <div className="flex items-center space-x-4">
-      <Button variant="outline" className="hidden md:inline-flex items-center border-0">
-  <Scan className="h-5 w-5" />
-  <span>Quick Scan</span>
-</Button>
+      <Button
+      variant="outline"
+      className="hidden md:inline-flex items-center border-0"
+      onClick={handleClick}
+    >
+      <Scan className="h-5 w-5" />
+      <span>Quick Scan</span>
+    </Button>
 
 
         <Button className="bg-blue-600 hover:bg-blue-700 rounded-3xl">
