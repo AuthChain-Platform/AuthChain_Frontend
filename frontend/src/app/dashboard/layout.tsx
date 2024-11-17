@@ -35,7 +35,7 @@ export default function DashboardLayout({
     {
       icon: <PlusCircle className="h-5 w-5" />,
       label: "Add Product",
-      href: "/dashboard/add-product",
+      href: "/dashboard/add_product",
     },
     {
       icon: <BarChart className="h-5 w-5" />,
@@ -64,42 +64,46 @@ export default function DashboardLayout({
   ];
 
   return (
-    <div className="h-screen flex flex-col bg-white">
-      <DashboardHeader />
+    <div className="h-screen flex bg-white">
 
-      <div className="flex flex-1 overflow-hidden">
-        <aside className="w-1/4 bg-white text-gray-800 flex flex-col justify-between shadow-md">
-          <div className="p-6 space-y-4">
-            {menuItems.map((item) => (
-              <Link
-                key={item.label}
-                href={item.href}
-                className={`flex items-center space-x-2 px-4 py-2 rounded-md ${
-                  pathname === item.href
-                    ? "bg-[#3D28F3] text-white"
-                    : "hover:bg-gray-100"
-                }`}
-              >
-                {item.icon}
-                <span>{item.label}</span>
-              </Link>
-            ))}
-          </div>
+      <aside className="w-1/4 xl:w-2/12 bg-white text-gray-800 flex flex-col justify-between shadow-md">
+        <div className="p-6 pt-12 space-y-4">
+          {menuItems.map((item) => (
+            <Link
+              key={item.label}
+              href={item.href}
+              className={`flex items-center space-x-2 px-4 py-2 rounded-md ${
+                pathname === item.href
+                  ? "bg-[#3D28F3] text-white"
+                  : "hover:bg-gray-100"
+              }`}
+            >
+              {item.icon}
+              <span>{item.label}</span>
+            </Link>
+          ))}
+        </div>
 
-          <div className="p-6 border-t border-gray-200">
-            {bottomMenuItems.map((item) => (
-              <Link
-                key={item.label}
-                href={item.href}
-                className="flex items-center space-x-2 px-4 py-2 rounded-md hover:bg-gray-100"
-              >
-                {item.icon}
-                <span>{item.label}</span>
-              </Link>
-            ))}
-          </div>
-        </aside>
+        <div className="p-6 border-t border-gray-200">
+          {bottomMenuItems.map((item) => (
+            <Link
+              key={item.label}
+              href={item.href}
+              className="flex items-center space-x-2 px-4 py-2 rounded-md hover:bg-gray-100"
+            >
+              {item.icon}
+              <span>{item.label}</span>
+            </Link>
+          ))}
+        </div>
+      </aside>
 
+     
+      <div className="flex-1 flex flex-col">
+    
+        <DashboardHeader />
+        
+ 
         <main className="flex-1 p-6 overflow-auto">{children}</main>
       </div>
     </div>
