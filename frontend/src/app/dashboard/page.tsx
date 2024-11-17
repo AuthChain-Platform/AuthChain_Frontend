@@ -1,7 +1,7 @@
 import { DashboardMetrics } from "./components/dashboard-metrics"
-import { AnalyticsChart } from "./components/analytics-chart"
+import { AnalyticsChart } from "./components/AnalyticsChart"
 import { OrderRequests } from "./components/order-requests"
-import { StaffManagement } from "./components/staff-management"
+import { StaffManagement } from "./components/StaffManagement"
 import ProductsHeader from './components/product-header';
 
 export default function DashboardPage() {

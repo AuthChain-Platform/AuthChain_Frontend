@@ -1,8 +1,16 @@
 import React from 'react'
+import { OrderRequests } from '../components/order-requests'
+import ProductsTable from '../products/components/products-table'
 
 const page = () => {
   return (
-    <div>orders page</div>
+    <div> 
+    <h1 className="text-2xl font-semibold text-gray-900 mb-9">Orders</h1>
+
+
+        <ProductsTable />
+
+</div>
   )
 }
 
