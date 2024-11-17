@@ -1,11 +1,11 @@
 import React from 'react';
-import ProductsHeader from './components/product-header';
+import PageHeader from '../components/PageHeader';
 import ProductsTable from './components/products-table';
 
 export default function ProductsPage() {
   return (
     <div className="min-h-screen">
-      <ProductsHeader />
+      <PageHeader title="Products" />
       <main className="p-6">
         <ProductsTable />
       </main>

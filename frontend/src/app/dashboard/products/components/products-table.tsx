@@ -1,4 +1,3 @@
-// src/app/dashboard/products/components/products-table.tsx
 import React from "react";
 import {
   Table,
