@@ -16,7 +16,7 @@ const Sidebar = () => {
   const menuItems = [
     { icon: <LayoutDashboard className="h-5 w-5" />, label: 'Overview', href: '/dashboard' },
     { icon: <Package className="h-5 w-5" />, label: 'Product', href: '/dashboard/products', active: true },
-    { icon: <PlusCircle className="h-5 w-5" />, label: 'Add Product', href: '/dashboard/add-product' },
+    { icon: <PlusCircle className="h-5 w-5" />, label: 'Add Product', href: '/dashboard/add_product' },
     { icon: <BarChart className="h-5 w-5" />, label: 'Analytics', href: '/dashboard/analytics' },
     { icon: <FileText className="h-5 w-5" />, label: 'Order Request', href: '/dashboard/orders' },
     { icon: <Users className="h-5 w-5" />, label: 'Staff', href: '/dashboard/staff' },
