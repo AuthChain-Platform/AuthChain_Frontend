@@ -1,3 +1,4 @@
+
 "use client";
 import React from 'react';
 
@@ -6,7 +7,9 @@ import { AnalyticsChart } from '../components/AnalyticsChart';
 const AnalyticsPage: React.FC = () => {
 
 
+
   return (
+
     <div className="flex flex-col gap-4">
       <div className="flex justify-between items-center">
 
@@ -21,5 +24,6 @@ const AnalyticsPage: React.FC = () => {
     </div>
   );
 };
+
 
 export default AnalyticsPage;
