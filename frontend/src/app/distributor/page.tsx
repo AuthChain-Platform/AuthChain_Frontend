@@ -1,9 +1,30 @@
-import React from 'react'
 
-const distributer  = () => {
+
+'use client'
+
+import React from "react";
+import { Button } from "@/components/ui/button";
+import { useRouter } from "next/navigation";
+
+const distributer = () => {
+  const router = useRouter();
+
+  const handleClick = () => {
+    router.push("/distributor/dashboard");
+  };
+
   return (
-    <div>complete distributer set up</div>
-  )
-}
+    <div>
+      <p>complete distributer set up</p>
+      <Button
+        variant="outline"
+        className="bg-white text-lg px-8 py-6 rounded-3xl"
+        onClick={handleClick}
+      >
+        Submit Button
+      </Button>
+    </div>
+  );
+};
 
-export default distributer 
+export default distributer;
