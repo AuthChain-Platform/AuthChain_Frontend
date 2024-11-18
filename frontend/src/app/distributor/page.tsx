@@ -1,19 +1,21 @@
+
+
 'use client'
 
 import React from "react";
 import { Button } from "@/components/ui/button";
 import { useRouter } from "next/navigation";
 
-const page = () => {
+const distributer = () => {
   const router = useRouter();
 
   const handleClick = () => {
-    router.push("/manufacturer/dashboard");
+    router.push("/distributor/dashboard");
   };
 
   return (
     <div>
-      <p>complete Manufacturer set up</p>
+      <p>complete distributer set up</p>
       <Button
         variant="outline"
         className="bg-white text-lg px-8 py-6 rounded-3xl"
@@ -24,4 +26,5 @@ const page = () => {
     </div>
   );
 };
-export default page;
+
+export default distributer;
