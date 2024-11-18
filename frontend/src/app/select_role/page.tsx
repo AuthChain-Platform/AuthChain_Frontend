@@ -1,34 +1,39 @@
-'use client'
+"use client";
 
 import React, { useState } from "react";
+import { useRouter } from "next/navigation";
 
 const SelectRole = () => {
-  const [selectedRole, setSelectedRole] = useState("");
+  const router = useRouter();
+  const [role, setRole] = useState("");
 
-  const handleChange = (event: React.ChangeEvent<HTMLSelectElement>) => {
-    setSelectedRole(event.target.value);
+  const handleRoleSelect = () => {
+    if (role) {
+      router.push(`/${role}`); // Redirect to the respective route
+    } else {
+      alert("Please select a role before proceeding.");
+    }
   };
 
   return (
-    <div className="flex justify-center items-center h-screen bg-gray-50">
-      <div className="flex flex-col p-10 bg-white shadow-lg rounded-lg">
-        <p className="text-2xl font-semibold mb-8 text-gray-800">Select Your Role</p>
+    <div className="flex justify-center items-center min-h-screen bg-gray-50">
+      <div className="flex flex-col p-16 bg-white shadow-lg w-1/2 rounded-md">
+        <p className="text-2xl mb-8 text-gray-700 text-center">Select Your Role</p>
         <select
-          className="p-3 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-2 focus:ring-blue-500"
-          value={selectedRole}
-          onChange={handleChange}
+          className="p-3 border rounded mb-10 w-full"
+          value={role}
+          onChange={(e) => setRole(e.target.value)}
         >
-          <option value="" disabled>
-            Choose a role
-          </option>
+          <option value="">-- Select Role --</option>
           <option value="manufacturer">Manufacturer</option>
           <option value="distributor">Distributor</option>
         </select>
-        {selectedRole && (
-          <p className="mt-4 text-gray-600">
-            You selected: <span className="font-medium">{selectedRole}</span>
-          </p>
-        )}
+        <button
+          onClick={handleRoleSelect}
+          className="p-3 bg-[#2711F1] text-white rounded hover:bg-blue-600 transition"
+        >
+          Proceed
+        </button>
       </div>
     </div>
   );
