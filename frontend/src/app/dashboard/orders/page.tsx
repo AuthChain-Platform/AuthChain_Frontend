@@ -1,5 +1,4 @@
 import React from 'react'
-import { OrderRequests } from '../components/order-requests'
 import ProductsTable from '../products/components/products-table'
 
 const page = () => {
