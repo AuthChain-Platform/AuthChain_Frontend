@@ -25,27 +25,27 @@ export default function DashboardLayout({
     {
       icon: <LayoutDashboard className="h-5 w-5" />,
       label: "Overview",
-      href: "distributor/dashboard",
+      href: "/distributor/dashboard",
     },
     {
       icon: <Package className="h-5 w-5" />,
       label: "My Products",
-      href: "distributor/dashboard/my_products",
+      href: "/distributor/dashboard/my_products",
     },
     {
       icon: <PlusCircle className="h-5 w-5" />,
       label: "Request Product",
-      href: "distributor/dashboard/request_product",
+      href: "/distributor/dashboard/request_product",
     },
     {
       icon: <BarChart className="h-5 w-5" />,
       label: "Product Journey",
-      href: "distributor/dashboard/product_journey",
+      href: "/distributor/dashboard/product_journey",
     },
     {
       icon: <FileText className="h-5 w-5" />,
       label: "Order Status",
-      href: "distributor/dashboard/order_status",
+      href: "/distributor/dashboard/order_status",
     },
 
   ];
