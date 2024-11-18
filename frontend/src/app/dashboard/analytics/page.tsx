@@ -1,9 +1,25 @@
-import React from 'react'
+"use client";
+import React from 'react';
 
-const page = () => {
+import { AnalyticsChart } from '../components/AnalyticsChart';
+
+const AnalyticsPage: React.FC = () => {
+
+
   return (
-    <div> Analytics page</div>
-  )
-}
+    <div className="flex flex-col gap-4">
+      <div className="flex justify-between items-center">
 
-export default page
+        <h1 className="text-2xl font-semibold mb-8">Analytics</h1>
+      </div>
+
+
+
+      <AnalyticsChart />
+
+
+    </div>
+  );
+};
+
+export default AnalyticsPage;
