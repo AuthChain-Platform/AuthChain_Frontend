@@ -1,68 +1,94 @@
-'use client'
+"use client";
 
-import React from 'react';
-import {  Scan } from "lucide-react";
-import Image from 'next/image';
+import React, { useEffect } from "react";
+import { Scan } from "lucide-react";
+import Image from "next/image";
 import { Button } from "@/components/ui/button";
 import { useRouter } from "next/navigation";
-import { client } from '@/constants/client';
-import { ConnectButton } from 'thirdweb/react';
+import { client } from "@/constants/client";
+import { ConnectButton, useActiveAccount } from "thirdweb/react";
 import { defineChain } from "thirdweb";
 
-
 const Navbar = () => {
-
   const router = useRouter();
+  const activeAccount = useActiveAccount();
+  const address = activeAccount?.address;
 
   const lisk = defineChain({
     id: 4202,
-    rpc: "https://4202.rpc.thirdweb.com/${THIRDWEB_API_KEY}"
+    rpc: "https://4202.rpc.thirdweb.com/${THIRDWEB_API_KEY}",
   });
+
+  useEffect(() => {
+   
+    if (address) {
+      router.push("/select_role"); 
+    }
+  }, [address, router]);
 
   const handleClick = () => {
     router.push("/scan_product");
   };
 
-
   return (
     <nav className="flex items-center justify-between px-6 py-4 bg-white">
       <div className="flex items-center">
         <div className="relative w-32 h-12">
-          <Image 
-            src="/logo.jpeg" 
+          <Image
+            src="/logo.jpeg"
             alt="Authentic Chain Logo"
             fill
-            className="object-contain "
+            className="object-contain"
             priority
           />
         </div>
         <span className="text-xl font-semibold">AUTHENTIC CHAIN</span>
       </div>
-      
-      <div className="hidden md:flex items-center space-x-6">
-        <a href="#" className="text-gray-600 hover:text-gray-900 transition-colors duration-300">HOME</a>
-        <a href="#" className="text-gray-600 hover:text-gray-900 transition-colors duration-300">ABOUT US</a>
-        <a href="#" className="text-gray-600 hover:text-gray-900 transition-colors duration-300">CONTACT US</a>
-      </div>
-      
-      <div className="flex items-center space-x-4">
-      <Button
-      variant="outline"
-      className="hidden md:inline-flex items-center border-0"
-      onClick={handleClick}
-    >
-      <Scan className="h-5 w-5" />
-      <span>Quick Scan</span>
-    </Button>
 
-   
-    <ConnectButton theme="light" client={client} chain={lisk} appMetadata={{
+      <div className="hidden md:flex items-center space-x-6">
+        <a
+          href="#"
+          className="text-gray-600 hover:text-gray-900 transition-colors duration-300"
+        >
+          HOME
+        </a>
+        <a
+          href="#"
+          className="text-gray-600 hover:text-gray-900 transition-colors duration-300"
+        >
+          ABOUT US
+        </a>
+        <a
+          href="#"
+          className="text-gray-600 hover:text-gray-900 transition-colors duration-300"
+        >
+          CONTACT US
+        </a>
+      </div>
+
+      <div className="flex items-center space-x-4">
+        <Button
+          variant="outline"
+          className="hidden md:inline-flex items-center border-0"
+          onClick={handleClick}
+        >
+          <Scan className="h-5 w-5" />
+          <span>Quick Scan</span>
+        </Button>
+
+       
+        {!address && (
+          <ConnectButton
+            theme="light"
+            client={client}
+            chain={lisk}
+            appMetadata={{
               name: "Authentic Chain",
               url: "https://",
-            }} />
+            }}
+          />
+        )}
       </div>
-     
-
     </nav>
   );
 };
