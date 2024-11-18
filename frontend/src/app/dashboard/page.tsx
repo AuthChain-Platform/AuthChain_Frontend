@@ -1,13 +1,15 @@
-import { DashboardMetrics } from "./components/dashboard-metrics"
+
+import { DashboardMetrics } from "./components/DashboardMetrics"
 import { AnalyticsChart } from "./components/AnalyticsChart"
-import { OrderRequests } from "./components/order-requests"
+import { OrderRequests } from "./components/OrderRequest"
 import { StaffManagement } from "./components/StaffManagement"
-import ProductsHeader from './components/product-header';
+import PageHeader from './components/PageHeader';
+
 
 export default function DashboardPage() {
   return (
     <>
-      <ProductsHeader />
+      <PageHeader title="Dashboard" />
       <DashboardMetrics />
       <div className="space-y-6 mt-6">
         <AnalyticsChart />

@@ -5,10 +5,19 @@ import {  Scan } from "lucide-react";
 import Image from 'next/image';
 import { Button } from "@/components/ui/button";
 import { useRouter } from "next/navigation";
+import { client } from '@/constants/client';
+import { ConnectButton } from 'thirdweb/react';
+import { defineChain } from "thirdweb";
+
 
 const Navbar = () => {
 
   const router = useRouter();
+
+  const lisk = defineChain({
+    id: 4202,
+    rpc: "https://4202.rpc.thirdweb.com/${THIRDWEB_API_KEY}"
+  });
 
   const handleClick = () => {
     router.push("/scan_product");
@@ -46,11 +55,14 @@ const Navbar = () => {
       <span>Quick Scan</span>
     </Button>
 
-
-        <Button className="bg-blue-600 hover:bg-blue-700 rounded-3xl">
-          Connect Wallet
-        </Button>
+   
+    <ConnectButton theme="light" client={client} chain={lisk} appMetadata={{
+              name: "Authentic Chain",
+              url: "https://",
+            }} />
       </div>
+     
+
     </nav>
   );
 };
