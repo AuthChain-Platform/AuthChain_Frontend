@@ -1,5 +1,5 @@
 import { Metadata } from "next"
-import AddProductForm from "@/app/dashboard/components/AddProductForm"
+import AddProductForm from "../components/AddProductForm"
 
 
 export const metadata: Metadata = {
