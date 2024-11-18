@@ -2,7 +2,7 @@ import React from 'react'
 
 const distributer  = () => {
   return (
-    <div>distributer set up</div>
+    <div>complete distributer set up</div>
   )
 }
 

@@ -25,32 +25,32 @@ export default function DashboardLayout({
     {
       icon: <LayoutDashboard className="h-5 w-5" />,
       label: "Overview",
-      href: "/dashboard",
+      href: "manufacturer/dashboard",
     },
     {
       icon: <Package className="h-5 w-5" />,
       label: "Product",
-      href: "/dashboard/products",
+      href: "manufacturer/dashboard/products",
     },
     {
       icon: <PlusCircle className="h-5 w-5" />,
       label: "Add Product",
-      href: "/dashboard/add_product",
+      href: "manufacturer/dashboard/add_product",
     },
     {
       icon: <BarChart className="h-5 w-5" />,
       label: "Analytics",
-      href: "/dashboard/analytics",
+      href: "manufacturer/dashboard/analytics",
     },
     {
       icon: <FileText className="h-5 w-5" />,
       label: "Order Request",
-      href: "/dashboard/orders",
+      href: "manufacturer/dashboard/orders",
     },
     {
       icon: <Users className="h-5 w-5" />,
       label: "Staff",
-      href: "/dashboard/staff",
+      href: "manufacturer/dashboard/staff",
     },
   ];
 
@@ -58,7 +58,7 @@ export default function DashboardLayout({
     {
       icon: <Settings className="h-5 w-5" />,
       label: "Settings",
-      href: "/dashboard/settings",
+      href: "manufacturer/dashboard/settings",
     },
     { icon: <LogOut className="h-5 w-5" />, label: "Logout", href: "/logout" },
   ];
