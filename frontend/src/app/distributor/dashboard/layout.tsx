@@ -25,40 +25,36 @@ export default function DashboardLayout({
     {
       icon: <LayoutDashboard className="h-5 w-5" />,
       label: "Overview",
-      href: "manufacturer/dashboard",
+      href: "distributor/dashboard",
     },
     {
       icon: <Package className="h-5 w-5" />,
-      label: "Product",
-      href: "manufacturer/dashboard/products",
+      label: "My Products",
+      href: "distributor/dashboard/my_products",
     },
     {
       icon: <PlusCircle className="h-5 w-5" />,
-      label: "Add Product",
-      href: "manufacturer/dashboard/add_product",
+      label: "Request Product",
+      href: "distributor/dashboard/request_product",
     },
     {
       icon: <BarChart className="h-5 w-5" />,
-      label: "Analytics",
-      href: "manufacturer/dashboard/analytics",
+      label: "Product Journey",
+      href: "distributor/dashboard/product_journey",
     },
     {
       icon: <FileText className="h-5 w-5" />,
-      label: "Order Request",
-      href: "manufacturer/dashboard/orders",
+      label: "Order Status",
+      href: "distributor/dashboard/order_status",
     },
-    {
-      icon: <Users className="h-5 w-5" />,
-      label: "Staff",
-      href: "manufacturer/dashboard/staff",
-    },
+
   ];
 
   const bottomMenuItems = [
     {
       icon: <Settings className="h-5 w-5" />,
       label: "Settings",
-      href: "manufacturer/dashboard/settings",
+      href: "distributor/dashboard/settings",
     },
     { icon: <LogOut className="h-5 w-5" />, label: "Logout", href: "/logout" },
   ];
