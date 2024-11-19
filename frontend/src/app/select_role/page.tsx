@@ -14,7 +14,7 @@ import { useSendTransaction } from "thirdweb/react";
 // Define role routes in a type-safe way
 const ROLE_ROUTES = {
   2: '/manufacturer',
-  4: '/distributor'
+  5: '/distributor'
 } as const;
 
 
@@ -32,7 +32,7 @@ export default function SelectRole() {
 const contract = getContract({
   client: client,
   chain: lisk,
-  abi: [
+  abi: [ 
     {
       "inputs": [
         {
@@ -83,7 +83,7 @@ const handleRouting = (selectedRole: number) => {
         >
           <option value={0}>Select Role</option>
           <option value={2}>Manufacturer</option>
-          <option value={4}>Distributor</option>
+          <option value={5}>Distributor</option>
         </select>
         
         <TransactionButton
