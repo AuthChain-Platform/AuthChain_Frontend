@@ -13,7 +13,7 @@ import { useSendTransaction } from "thirdweb/react";
 
 // Define role routes in a type-safe way
 const ROLE_ROUTES = {
-  2: '/manufacturer',
+  2: '/manufacturer/complete_reg',
   5: '/distributor'
 } as const;
 
