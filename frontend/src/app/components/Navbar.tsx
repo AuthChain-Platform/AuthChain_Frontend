@@ -5,26 +5,28 @@ import { Scan } from "lucide-react";
 import Image from "next/image";
 import { Button } from "@/components/ui/button";
 import { useRouter } from "next/navigation";
-import { client } from "@/constants/client";
+import { createWallet, inAppWallet } from "thirdweb/wallets";
 import { ConnectButton, useActiveAccount } from "thirdweb/react";
+import { client } from "@/constants/client";
 import { defineChain } from "thirdweb";
+import { createThirdwebClient } from "thirdweb";
 
 const Navbar = () => {
   const router = useRouter();
   const activeAccount = useActiveAccount();
-  const address = activeAccount?.address;
+  
 
   const lisk = defineChain({
     id: 4202,
     rpc: "https://4202.rpc.thirdweb.com/${THIRDWEB_API_KEY}",
   });
 
+  
   useEffect(() => {
-   
-    if (address) {
-      router.push("/select_role"); 
+    if (activeAccount) {
+      router.push("/select_role");
     }
-  }, [address, router]);
+  }, [activeAccount, router]);
 
   const handleClick = () => {
     router.push("/scan_product");
@@ -77,14 +79,17 @@ const Navbar = () => {
         </Button>
 
        
-        {!address && (
+        {!activeAccount && (
           <ConnectButton
-            theme="light"
-            client={client}
+            client={client} 
             chain={lisk}
             appMetadata={{
               name: "Authentic Chain",
               url: "https://",
+            }}
+            connectButton={{
+              label: "Sign In",
+              className: "bg-blue text-white rounded-[20px] px-4 py-2",
             }}
           />
         )}

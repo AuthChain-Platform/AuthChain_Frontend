@@ -1,3 +1,5 @@
+"Use Client"
+
 import React, { useState } from "react";
 
 const SelectRole = () => {
@@ -19,8 +21,8 @@ const SelectRole = () => {
           <option value="" disabled>
             Choose a role
           </option>
-          <option value="manufacturer">Manufacturer</option>
-          <option value="distributor">Distributor</option>
+          <option value={2}>Manufacturer</option>
+          <option value={4}>Distributor</option>
         </select>
         {selectedRole && (
           <p className="mt-4 text-gray-600">
