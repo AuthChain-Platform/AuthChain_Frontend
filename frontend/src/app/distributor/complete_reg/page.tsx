@@ -16,7 +16,7 @@ const SetupForm = () => {
   const router = useRouter();
 
   const handleClick = () => {
-    router.push("/manufacturer/dashboard");
+    router.push("/distributor/dashboard");
   };
 
   return (

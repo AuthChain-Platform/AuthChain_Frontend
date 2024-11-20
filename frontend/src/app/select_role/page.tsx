@@ -15,7 +15,7 @@ import Navbar from "../components/Navbar";
 // Define role routes in a type-safe way
 const ROLE_ROUTES = {
   2: '/manufacturer/complete_reg',
-  5: '/distributor'
+  5: '/distributor/complete_reg'
 } as const;
 
 
