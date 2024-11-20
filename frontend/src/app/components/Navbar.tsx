@@ -22,11 +22,11 @@ const Navbar = () => {
   });
 
   
-  useEffect(() => {
-    if (activeAccount) {
-      router.push("/select_role");
-    }
-  }, [activeAccount, router]);
+  // useEffect(() => {
+  //   if (activeAccount) {
+  //     router.push("/select_role");
+  //   }
+  // }, [activeAccount, router]);
 
   const handleClick = () => {
     router.push("/scan_product");
