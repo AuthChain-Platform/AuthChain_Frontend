@@ -21,12 +21,6 @@ const Navbar = () => {
     rpc: "https://4202.rpc.thirdweb.com/${THIRDWEB_API_KEY}",
   });
 
-  
-  // useEffect(() => {
-  //   if (activeAccount) {
-  //     router.push("/select_role");
-  //   }
-  // }, [activeAccount, router]);
 
   const handleClick = () => {
     router.push("/scan_product");
