@@ -9,6 +9,7 @@ import { client } from "@/constants/client";
 import { lisk } from "@/constants/chain"; 
 import {getContract} from "thirdweb";
 import { useSendTransaction } from "thirdweb/react";
+import Navbar from "../components/Navbar";
 
 
 // Define role routes in a type-safe way
@@ -73,7 +74,11 @@ const handleRouting = (selectedRole: number) => {
  
 
   return (
+    <div className="grid">
+
+    <Navbar />
     <div className="flex justify-center items-center min-h-screen bg-gray-50">
+   
       <div className="flex flex-col p-16 bg-white shadow-lg w-1/2 rounded-md">
         <p className="text-4xl mb-8 text-gray-700 text-center font-semibold">Select Your Role</p>
         <select
@@ -105,6 +110,7 @@ const handleRouting = (selectedRole: number) => {
           {!account ? "Connect Wallet" : !role ? "Select Role" : "Proceed"}
         </TransactionButton>
       </div>
+    </div>
     </div>
   );
 };
