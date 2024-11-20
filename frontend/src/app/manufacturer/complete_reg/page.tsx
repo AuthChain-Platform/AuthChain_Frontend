@@ -42,6 +42,7 @@ const SetupForm = () => {
   };
 
 
+
   const handleClick = () => {
     router.push("/manufacturer/dashboard");
   };
