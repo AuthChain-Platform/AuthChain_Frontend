@@ -79,7 +79,7 @@ const Navbar = () => {
         </Button>
 
        
-        {!activeAccount && (
+        
           <ConnectButton
             client={client} 
             chain={lisk}
@@ -92,7 +92,7 @@ const Navbar = () => {
               className: "bg-blue text-white rounded-[20px] px-4 py-2",
             }}
           />
-        )}
+        
       </div>
     </nav>
   );
