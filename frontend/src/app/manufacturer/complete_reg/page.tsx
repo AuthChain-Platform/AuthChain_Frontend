@@ -1,25 +1,55 @@
 "use client";
 
-import React from 'react';
+import React, {useEffect, useState} from 'react';
+import { useRouter } from "next/navigation";
+import { useActiveAccount, TransactionButton } from "thirdweb/react";
+import { prepareContractCall } from "thirdweb";
+import { client } from "@/constants/client";
+import { lisk } from "@/constants/chain"; 
+import {getContract} from "thirdweb";
+import { useSendTransaction } from "thirdweb/react";
 import { Card } from '@/components/ui/card';
 import { Input } from '@/components/ui/input';
 import { Button } from '@/components/ui/button';
+import { useAuthContext } from '@/app/context/authContext';
 import { Camera } from 'lucide-react';
-import { useRouter } from "next/navigation";
+import Navbar from '@/app/components/Navbar';
 
 const SetupForm = () => {
+
+  const account = useActiveAccount();
+  const router = useRouter();
+
+  const {userRole} = useAuthContext();
+
+
+  useEffect(() => {
+    if (!account) {
+      router.push('/');
+    }
+  }, [account, router]);
+
+  useEffect(() => {
+    if (!userRole) {
+      router.push('/select_role');
+    }
+  }, [account, router]);
+  
+
+  
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
-   
   };
 
-  const router = useRouter();
 
   const handleClick = () => {
     router.push("/manufacturer/dashboard");
   };
 
+
   return (
+    <div className='grid'>
+       {/* <Navbar /> */}
     <div className="min-h-screen bg-gray-50 py-16 px-4"> 
       <div className="max-w-4xl mx-auto mt-8">
         <Card className="p-6">
@@ -43,15 +73,19 @@ const SetupForm = () => {
             
               <div className="space-y-6">
                 <div className="space-y-2">
+
                   <label className="text-gray-600">Brand Name</label>
                   <Input 
                     type="text" 
                     placeholder="Enter your product name"
                     className="w-full"
                   />
+
                 </div>
 
                 <div className="space-y-2">
+
+
                   <label className="text-gray-600">Country/Region</label>
                   <Input 
                     type="text" 
@@ -119,6 +153,7 @@ const SetupForm = () => {
           </form>
         </Card>
       </div>
+    </div>
     </div>
   );
 };

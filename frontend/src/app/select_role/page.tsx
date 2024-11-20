@@ -28,7 +28,7 @@ export default function SelectRole() {
   const account = useActiveAccount();
   
 
-  const userRoleAddress = "0x9b17d06296D01ab7BD42e2e55a517980fFFE9c61";
+const userRoleAddress = "0x9b17d06296D01ab7BD42e2e55a517980fFFE9c61";
 
 const contract = getContract({
   client: client,
@@ -98,12 +98,13 @@ const handleRouting = (selectedRole: number) => {
             params: [String(account?.address), role]
           })}
           onTransactionConfirmed={async () => {
-            setUserRole(String(role));
-            alert("Role assigned successfully!");
+           
+            // alert("Role assigned successfully!");
            
             handleRouting(role);
+            setUserRole(String(role));
           }}
-          onError={(error) => alert(`Error: ${error.message}`)}
+          // onError={(error) => alert(`Error: ${error.message}`)}
           disabled={!role || !account}
           className="p-3 bg-[#2711F1] text-white rounded hover:bg-blue-600 transition disabled:bg-gray-400 disabled:cursor-not-allowed"
         >
