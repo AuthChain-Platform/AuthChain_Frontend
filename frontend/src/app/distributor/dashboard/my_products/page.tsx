@@ -6,7 +6,7 @@ import ProductsTable from '@/app/manufacturer/dashboard/products/components/prod
 export default function ProductsPage() {
   return (
     <div className="min-h-screen">
-      <PageHeader title="Products" />
+      <PageHeader title="My Products" />
       <main className="p-6">
         <ProductsTable />
       </main>
