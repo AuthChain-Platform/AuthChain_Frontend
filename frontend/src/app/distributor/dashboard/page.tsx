@@ -1,9 +1,24 @@
-import React from 'react'
+import { AnalyticsChart } from "@/app/manufacturer/dashboard/components/AnalyticsChart";
 
-const page = () => {
+import { OrderRequests } from "@/app/manufacturer/dashboard/components/OrderRequest";
+import   PageHeader  from "./components/PageHeader"
+import { DashbordCards } from "./components/DashboardCards";
+import { Notifications } from "./components/Notifications";
+
+
+
+
+export default function DashboardPage() {
   return (
-    <div>distributor dashboard</div>
+    <>
+       <PageHeader title="Dashboard" />
+       <DashbordCards />
+      <div className="space-y-6 mt-6">   
+        <OrderRequests/>
+        <AnalyticsChart />
+        <Notifications />
+    
+      </div>
+    </>
   )
 }
-
-export default page
