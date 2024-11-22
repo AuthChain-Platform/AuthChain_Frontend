@@ -5,6 +5,8 @@ import { useState } from "react";
 interface AuthContextType {
   userRole: string | undefined;
   setUserRole: (role: string) => void;
+  setIsRegistered: (isRegistered: boolean) => void;
+  isRegistered: boolean;
 }
 
 // Create context with type and default value
@@ -26,9 +28,12 @@ interface AuthProviderProps {
 
 export function AuthProvider({ children }: AuthProviderProps) {
   const [userRole, setuserRole] = useState("");
+  const [isRegistered, setIsRegistered] = useState(false);
 
   const value: AuthContextType = {
     userRole,
+    setIsRegistered: setIsRegistered,
+    isRegistered: isRegistered,
     setUserRole: setuserRole,
   };
 

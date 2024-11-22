@@ -21,14 +21,13 @@ const ROLE_ROUTES = {
 
 
 export default function SelectRole() {
+
   const { mutate: sendTransaction } = useSendTransaction();
   const router = useRouter();
   const [role, setRole] = useState(0);
   const {setUserRole} = useAuthContext();
   const account = useActiveAccount();
-  
-
-const userRoleAddress = "0x9b17d06296D01ab7BD42e2e55a517980fFFE9c61";
+  const userRoleAddress = "0x9b17d06296D01ab7BD42e2e55a517980fFFE9c61";
 
 const contract = getContract({
   client: client,
@@ -63,7 +62,15 @@ useEffect(() => {
     router.push('/');
   }
 }, [account, router]);
-  
+ 
+
+
+useEffect(() => {
+  if (!userRoleAddress) {
+    router.push('/');
+  }
+}, [account, router]);
+
 
 const handleRouting = (selectedRole: number) => {
   const route = ROLE_ROUTES[selectedRole as keyof typeof ROLE_ROUTES];
@@ -97,10 +104,8 @@ const handleRouting = (selectedRole: number) => {
             method: "assignRole",
             params: [String(account?.address), role]
           })}
-          onTransactionConfirmed={async () => {
-           
+          onTransactionConfirmed={async () => { 
             // alert("Role assigned successfully!");
-           
             handleRouting(role);
             setUserRole(String(role));
           }}
@@ -110,6 +115,7 @@ const handleRouting = (selectedRole: number) => {
         >
           {!account ? "Connect Wallet" : !role ? "Select Role" : "Proceed"}
         </TransactionButton>
+        
       </div>
     </div>
     </div>
