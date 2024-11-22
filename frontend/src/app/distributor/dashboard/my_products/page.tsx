@@ -1,9 +1,15 @@
-import React from 'react'
+import React from 'react';
+import PageHeader from '../components/PageHeader';
+import ProductsTable from '@/app/manufacturer/dashboard/products/components/products-table';
 
-const page = () => {
+
+export default function ProductsPage() {
   return (
-    <div>my products page</div>
-  )
+    <div className="min-h-screen">
+      <PageHeader title="My Products" />
+      <main className="p-6">
+        <ProductsTable />
+      </main>
+    </div>
+  );
 }
-
-export default page
