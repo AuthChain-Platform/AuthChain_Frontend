@@ -21,13 +21,12 @@ const ROLE_ROUTES = {
 
 
 export default function SelectRole() {
+
   const { mutate: sendTransaction } = useSendTransaction();
   const router = useRouter();
   const [role, setRole] = useState(0);
   const {setUserRole} = useAuthContext();
   const account = useActiveAccount();
-  
-
   const userRoleAddress = "0x9b17d06296D01ab7BD42e2e55a517980fFFE9c61";
 
 const contract = getContract({
@@ -63,7 +62,15 @@ useEffect(() => {
     router.push('/');
   }
 }, [account, router]);
-  
+ 
+
+
+useEffect(() => {
+  if (!userRoleAddress) {
+    router.push('/');
+  }
+}, [account, router]);
+
 
 const handleRouting = (selectedRole: number) => {
   const route = ROLE_ROUTES[selectedRole as keyof typeof ROLE_ROUTES];
@@ -97,18 +104,18 @@ const handleRouting = (selectedRole: number) => {
             method: "assignRole",
             params: [String(account?.address), role]
           })}
-          onTransactionConfirmed={async () => {
-            setUserRole(String(role));
-            alert("Role assigned successfully!");
-           
+          onTransactionConfirmed={async () => { 
+            // alert("Role assigned successfully!");
             handleRouting(role);
+            setUserRole(String(role));
           }}
-          onError={(error) => alert(`Error: ${error.message}`)}
+          // onError={(error) => alert(`Error: ${error.message}`)}
           disabled={!role || !account}
           className="p-3 bg-[#2711F1] text-white rounded hover:bg-blue-600 transition disabled:bg-gray-400 disabled:cursor-not-allowed"
         >
           {!account ? "Connect Wallet" : !role ? "Select Role" : "Proceed"}
         </TransactionButton>
+        
       </div>
     </div>
     </div>

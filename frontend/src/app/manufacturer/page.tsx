@@ -11,6 +11,8 @@ const page = () => {
     router.push("/manufacturer/dashboard");
   };
 
+
+  
   return (
     <div>
       <p>complete Manufacturer set up</p>
