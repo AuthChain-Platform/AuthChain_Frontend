@@ -110,6 +110,32 @@ const Page = () => {
     isImage: false,
   });
 
+
+    const fetchProductDetails = async (productCode: string | number) => {
+    setPreviewState((prev) => ({ ...prev, isLoading: true, isError: false }));
+    try {
+      const contract = await sdk.getContract(
+        "0x4456ce0eBadB36Ad298Ff19ce4aC18075c4407Cb",
+        ABI
+      );
+      const data = await contract.call("getProductDetails", [BigInt(productCode)]);
+      console.log({ data });
+      setProductData(data);
+      setPreviewState((prev) => ({ ...prev, isLoading: false }));
+    } catch (error) {
+      console.error("Smart contract error: ", error);
+      setPreviewState((prev) => ({
+        ...prev,
+        isLoading: false,
+        isError: true,
+        errorMessage:
+          (error as TransactionError)?.reason ??
+          "An error occurred while fetching product details",
+      }));
+    }
+  };
+
+
  
   useEffect(() => {
     setIsMounted(true);
@@ -144,6 +170,7 @@ const Page = () => {
            
             setScanResult(result);
            console.log({result: BigInt(result)})
+          fetchProductDetails(result);
            setPreviewState((prev)=> ({
             ...prev,
             isLoading:true
@@ -257,8 +284,16 @@ const Page = () => {
                     <input
                       className="w-full px-4 py-2 mb-4 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-[#3D28F3]"
                       placeholder="Enter Product ID"
+                       onChange={(e) => setScanResult(e.target.value)}
                     />
-                    <Button className="bg-[#3D28F3] w-full text-white py-2">
+                    <Button className="bg-[#3D28F3] w-full text-white py-2"
+                      onClick={() => {
+                              if (scanResult) {
+                                fetchProductDetails(scanResult);
+                              } else {
+                                alert("Please enter a valid Product ID.");
+                              }
+                            }}>
                       Track Product
                     </Button>
                   </div>
