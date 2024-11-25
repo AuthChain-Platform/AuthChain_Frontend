@@ -15,6 +15,10 @@ import { Camera } from "lucide-react";
 import { Alert, AlertDescription } from "@/components/ui/alert";
 import { pinata } from "@/constants/pinata";
 
+const REG_ROUTE = {
+  7: '/manufacturer/dashboard'
+}
+
 const SetupForm = () => {
   const account = useActiveAccount();
   const router = useRouter();
@@ -110,6 +114,13 @@ const SetupForm = () => {
       router.push("/");
     }
   }, [account, router]);
+
+  const handleRouting = () => {
+    const route = REG_ROUTE[7];
+    if (route) {
+      router.push(route);
+    }
+  };
 
   // Validation rules
   // const validateField = (name: string, value: string | number): string => {
@@ -214,9 +225,9 @@ const SetupForm = () => {
     // });
   };
 
-  const handleClick = () => {
-    router.push("/manufacturer/dashboard");
-  };
+  // const handleClick = () => {
+  //   router.push("/manufacturer/dashboard");
+  // };
 
   return (
     <div className="grid">
@@ -378,6 +389,34 @@ const SetupForm = () => {
                 >
                   Cancel
                 </Button>
+
+                <TransactionButton
+                  transaction={() => prepareContractCall({
+                    contract: contract,
+                    method: "registerManufacturer",
+                    params: [
+                      formData.brandName, 
+                      formData.nafdacNo,
+                      formData.registrationNo,
+                      BigInt(formData.yearOfRegistration),
+                      formData.location,
+                      formData.state,
+                      formData.image
+                    ]
+                  })}
+                  onError={(errors)=> {
+                    console.log({errors})
+                  }}
+                  onTransactionConfirmed={(val) => {
+                    alert("Registration successful!");
+                    router.push("/manufacturer/dashboard");
+                    setIsRegistered(true);
+                  }}
+                  disabled={!account}
+                  className="p-3 bg-[#2711F1] text-white rounded hover:bg-blue-600 transition disabled:bg-gray-400 disabled:cursor-not-allowed"
+                >
+                  {!account ? "Connect Wallet" : "Submit"}
+                </TransactionButton>
 
                 {/* <TransactionButton
                   transaction={handleTransaction}

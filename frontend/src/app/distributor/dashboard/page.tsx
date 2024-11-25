@@ -6,8 +6,6 @@ import { DashbordCards } from "./components/DashboardCards";
 import { Notifications } from "./components/Notifications";
 
 
-
-
 export default function DashboardPage() {
   return (
     <>

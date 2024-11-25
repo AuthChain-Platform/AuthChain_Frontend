@@ -3,6 +3,7 @@
 import React from "react";
 import { Button } from "@/components/ui/button";
 import { useRouter } from "next/navigation";
+import { ThirdwebSDK, TransactionError } from "@thirdweb-dev/sdk";
 
 const page = () => {
   const router = useRouter();
@@ -11,8 +12,6 @@ const page = () => {
     router.push("/manufacturer/dashboard");
   };
 
-
-  
   return (
     <div>
       <p>complete Manufacturer set up</p>
