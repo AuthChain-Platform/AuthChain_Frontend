@@ -11,6 +11,9 @@ import { client } from "@/constants/client";
 import { useReadContract } from "thirdweb/react";
 import { ThirdwebSDK, TransactionError } from "@thirdweb-dev/sdk";
 import ProductCard from "../components/ProductCard";
+
+import { ToastContainer, toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 interface QRScannerConfig {
   fps: number;
   qrbox: {
@@ -239,6 +242,8 @@ const Page = () => {
   return (
     <div className="bg-[#F5F6FA] min-h-screen flex flex-col">
       <Navbar />
+      <ToastContainer/>
+
       <div className="flex flex-1">
         <GeneralSidebar />
 
@@ -291,7 +296,7 @@ const Page = () => {
                               if (scanResult) {
                                 fetchProductDetails(scanResult);
                               } else {
-                                alert("Please enter a valid Product ID.");
+                                toast.error("Please enter a valid Product ID.");
                               }
                             }}>
                       Track Product
