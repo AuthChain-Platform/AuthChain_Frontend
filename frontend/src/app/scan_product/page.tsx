@@ -23,8 +23,7 @@ interface PreviewState {
   isLoading: boolean;
   isError: boolean;
   isImage: boolean;
-  errorMessage: string | null
-
+  errorMessage: string | null;
 }
 
 const Page = () => {
@@ -33,75 +32,95 @@ const Page = () => {
   const [scanResult, setScanResult] = useState<string | null>(null);
   const [isMounted, setIsMounted] = useState(false);
   const sdk = new ThirdwebSDK("lisk-sepolia-testnet");
- const [productData, setProductData]= useState(null)
+  const [productData, setProductData] = useState(null);
   const ABI = [
     {
-      "inputs": [
+      inputs: [
         {
-          "internalType": "uint256",
-          "name": "productCode",
-          "type": "uint256"
-        }
+          internalType: "uint256",
+          name: "productCode",
+          type: "uint256",
+        },
       ],
-      "name": "getProductDetails",
-      "outputs": [
+      name: "getProductDetails",
+      outputs: [
         {
-          "internalType": "string",
-          "name": "name",
-          "type": "string"
+          internalType: "string",
+          name: "name",
+          type: "string",
         },
         {
-          "internalType": "uint256",
-          "name": "price",
-          "type": "uint256"
+          internalType: "uint256",
+          name: "price",
+          type: "uint256",
         },
         {
-          "internalType": "uint256",
-          "name": "batchID",
-          "type": "uint256"
+          internalType: "uint256",
+          name: "batchID",
+          type: "uint256",
         },
         {
-          "internalType": "uint256",
-          "name": "expiryDate",
-          "type": "uint256"
+          internalType: "uint256",
+          name: "expiryDate",
+          type: "uint256",
         },
         {
-          "internalType": "string",
-          "name": "productDescription",
-          "type": "string"
+          internalType: "string",
+          name: "productDescription",
+          type: "string",
         },
         {
-          "internalType": "uint256",
-          "name": "availableQuantity",
-          "type": "uint256"
+          internalType: "uint256",
+          name: "availableQuantity",
+          type: "uint256",
         },
         {
-          "internalType": "string",
-          "name": "productImage",
-          "type": "string"
+          internalType: "string",
+          name: "productImage",
+          type: "string",
         },
         {
-          "internalType": "enum ProductManagement.ProductStatus",
-          "name": "status",
-          "type": "uint8"
+          internalType: "enum ProductManagement.ProductStatus",
+          name: "status",
+          type: "uint8",
         },
         {
-          "internalType": "address",
-          "name": "_owner",
-          "type": "address"
+          internalType: "address",
+          name: "_owner",
+          type: "address",
         },
         {
-          "internalType": "uint256",
-          "name": "trackingID",
-          "type": "uint256"
-        }
+          internalType: "uint256",
+          name: "trackingID",
+          type: "uint256",
+        },
       ],
-      "stateMutability": "view",
-      "type": "function"
+      stateMutability: "view",
+      type: "function",
+    },
+  ];
+
+  const handleManualFetch = async (productId: string) => {
+    setPreviewState((prev) => ({ ...prev, isLoading: true }));
+    try {
+      const contract = await sdk.getContract(
+        "0x4456ce0eBadB36Ad298Ff19ce4aC18075c4407Cb",
+        ABI
+      );
+      const data = await contract.call("getProductDetails", [
+        BigInt(productId),
+      ]);
+      setProductData(data);
+    } catch (error) {
+      setPreviewState((prev) => ({
+        ...prev,
+        isError: true,
+        errorMessage: "Error Fetching Product Details",
+      }));
+    } finally {
+      setPreviewState((prev) => ({ ...prev, isLoading: false }));
     }
-    
-  ]
- 
+  };
 
   const [previewState, setPreviewState] = useState<PreviewState>({
     isLoading: true,
@@ -110,7 +129,6 @@ const Page = () => {
     isImage: false,
   });
 
- 
   useEffect(() => {
     setIsMounted(true);
     return () => {
@@ -124,7 +142,6 @@ const Page = () => {
     if (isMounted && activeTab === "scanner") {
       const initializeScanner = async () => {
         try {
-         
           // Dynamically import the scanner only on client side
           const { Html5QrcodeScanner } = await import("html5-qrcode");
 
@@ -139,57 +156,62 @@ const Page = () => {
           const newScanner = new Html5QrcodeScanner("reader", config, false);
 
           const success = async (result: string) => {
-
             newScanner.clear();
-           
+
             setScanResult(result);
-           console.log({result: BigInt(result)})
-           setPreviewState((prev)=> ({
-            ...prev,
-            isLoading:true
-          }))
-          try {
-            const contract = await sdk.getContract("0x4456ce0eBadB36Ad298Ff19ce4aC18075c4407Cb", ABI);
-            const data = await contract.call("getProductDetails", [BigInt(result)])
-            console.log({data})
-            setProductData(data)
-            setPreviewState((prev)=> ({
+            console.log({ result: BigInt(result) });
+            setPreviewState((prev) => ({
               ...prev,
-              isLoading:false
-            }))
-          } catch (error ) {
-            console.error("Smart contract error: ", error)
-            setPreviewState((prev)=> ({
-              ...prev,
-              isLoading:false,
-              isError:true,
-              errorMessage:(error as TransactionError)?.reason ?? "An error occured when fetching" 
-            }))
-          }
+              isLoading: true,
+            }));
+            try {
+              const contract = await sdk.getContract(
+                "0x4456ce0eBadB36Ad298Ff19ce4aC18075c4407Cb",
+                ABI
+              );
+              const data = await contract.call("getProductDetails", [
+                BigInt(result),
+              ]);
+              console.log({ data });
+              setProductData(data);
+              setPreviewState((prev) => ({
+                ...prev,
+                isLoading: false,
+              }));
+            } catch (error) {
+              console.error("Smart contract error: ", error);
+              setPreviewState((prev) => ({
+                ...prev,
+                isLoading: false,
+                isError: true,
+                errorMessage:
+                  (error as TransactionError)?.reason ||
+                  "An error occured when fetching",
+              }));
+            }
           };
-        
 
           const error = (error: string) => {
             console.error(error);
-          
-            setPreviewState((prev)=> ({
+
+            setPreviewState((prev) => ({
               ...prev,
-              isLoading:false,
+              isLoading: false,
               // isError:true,
               // errorMessage: error
-            }))
+            }));
           };
 
           newScanner.render(success, error);
           setScanner(newScanner);
         } catch (err: any) {
-          console.error("Failed to initialize scanner:", err);
-          setPreviewState((prev)=> ({
+          console.error("Failed to initiaSorrylize scanner:", err);
+          setPreviewState((prev) => ({
             ...prev,
-            isLoading:false,
-            isError:true,
-            errorMessage:"An error occured"
-          }))
+            isLoading: false,
+            isError: true,
+            errorMessage: "An error occured",
+          }));
         }
       };
 
@@ -257,8 +279,12 @@ const Page = () => {
                     <input
                       className="w-full px-4 py-2 mb-4 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-[#3D28F3]"
                       placeholder="Enter Product ID"
+                      onChange={(e) => setScanResult(e.target.value)}
                     />
-                    <Button className="bg-[#3D28F3] w-full text-white py-2">
+                    <Button
+                      className="bg-[#3D28F3] w-full text-white py-2"
+                      onClick={() => handleManualFetch(scanResult || "")}
+                    >
                       Track Product
                     </Button>
                   </div>
@@ -293,37 +319,38 @@ const Page = () => {
                   )}
 
                   {/* Check if the result might be an image */}
-                  {scanResult.match(/\.(jpg|jpeg|png|gif|webp|bmp|svg)$/i) && (
-                    <img
-                      src={scanResult}
-                      alt="Scanned Result"
-                      className={`max-w-full h-auto rounded-lg shadow-sm transition-opacity duration-300 ${
-                        previewState.isLoading ? "opacity-0" : "opacity-100"
-                      }`}
-                      // onLoad={() => {
-                        
-                      // }}
-                      // onError={() => {
-                      //   setPreviewState({
-                      //     isLoading: false,
-                      //     isError: true,
-                      //     isImage: true,
-                      //   });
-                      // }}
-                    />
-                  ) 
-                  // : (
-                  //   <div className="p-4 bg-gray-50 rounded-lg">
-                  //     <p className="text-lg font-medium break-all">
-                  //       {scanResult}
-                  //     </p>
-                  //   </div>
-                  // )
+                  {
+                    scanResult.match(/\.(jpg|jpeg|png|gif|webp|bmp|svg)$/i) && (
+                      <img
+                        src={scanResult}
+                        alt="Scanned Result"
+                        className={`max-w-full h-auto rounded-lg shadow-sm transition-opacity duration-300 ${
+                          previewState.isLoading ? "opacity-0" : "opacity-100"
+                        }`}
+                        // onLoad={() => {
+
+                        // }}
+                        // onError={() => {
+                        //   setPreviewState({
+                        //     isLoading: false,
+                        //     isError: true,
+                        //     isImage: true,
+                        //   });
+                        // }}
+                      />
+                    )
+                    // : (
+                    //   <div className="p-4 bg-gray-50 rounded-lg">
+                    //     <p className="text-lg font-medium break-all">
+                    //       {scanResult}
+                    //     </p>
+                    //   </div>
+                    // )
                   }
 
                   {previewState.isError && (
                     <div className="mt-2 text-red-500">
-                      { previewState.errorMessage}
+                      {previewState.errorMessage}
                     </div>
                   )}
                 </div>
@@ -359,18 +386,19 @@ const Page = () => {
               </div>
             )}
           </div>
-          {
-          productData &&(  <ProductCard
-             brandName={productData[0]}
-             price={parseInt(productData[1]["_hex"], 16)}
-             productDescription={productData[4]}
-             owner={productData[8]}
-             trackingID={parseInt(productData[9]["_hex"], 16)}
-             batchID={parseInt(productData[2]["_hex"], 16)}
-             expiryDate={new Date(parseInt(productData[3]["_hex"], 16)*1000).toLocaleString("en-US")}
-    
-           />)
-          }
+          {productData && (
+            <ProductCard
+              brandName={productData[0]}
+              price={parseInt(productData[1]["_hex"], 16)}
+              productDescription={productData[4]}
+              owner={productData[8]}
+              trackingID={parseInt(productData[9]["_hex"], 16)}
+              batchID={parseInt(productData[2]["_hex"], 16)}
+              expiryDate={new Date(
+                parseInt(productData[3]["_hex"], 16) * 1000
+              ).toLocaleString("en-US")}
+            />
+          )}
           {/* {} */}
         </div>
       </div>
