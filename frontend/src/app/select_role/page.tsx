@@ -10,6 +10,8 @@ import { lisk } from "@/constants/chain";
 import {getContract} from "thirdweb";
 import { useSendTransaction } from "thirdweb/react";
 import Navbar from "../components/Navbar";
+import { ToastContainer, toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 
 
 // Define role routes in a type-safe way
@@ -17,8 +19,6 @@ const ROLE_ROUTES = {
   2: '/manufacturer/complete_reg',
   5: '/distributor/complete_reg'
 } as const;
-
-
 
 export default function SelectRole() {
 
@@ -108,12 +108,12 @@ console.log({error})
           }}
           onTransactionConfirmed={(reciept) => { 
             console.log({reciept})
-            // alert("Role assigned successfully!");
+            toast.success("Role assigned successfully!");
             setUserRole(String(role));
             handleRouting(role);
             
           }}
-          // onError={(error) => alert(`Error: ${error.message}`)}
+          // onError={(error) => toast.error(`Error: ${error.message}`)}
           disabled={!role || !account}
           className="p-3 bg-[#2711F1] text-white rounded hover:bg-blue-600 transition disabled:bg-gray-400 disabled:cursor-not-allowed"
         >
@@ -122,6 +122,7 @@ console.log({error})
         
       </div>
     </div>
+        <ToastContainer />
     </div>
   );
 };

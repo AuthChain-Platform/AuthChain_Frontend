@@ -11,6 +11,9 @@ import { client } from "@/constants/client";
 import { useReadContract } from "thirdweb/react";
 import { ThirdwebSDK, TransactionError } from "@thirdweb-dev/sdk";
 import ProductCard from "../components/ProductCard";
+
+import { ToastContainer, toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 interface QRScannerConfig {
   fps: number;
   qrbox: {
@@ -129,6 +132,30 @@ const Page = () => {
     isImage: false,
   });
 
+    const fetchProductDetails = async (productCode: string | number) => {
+    setPreviewState((prev) => ({ ...prev, isLoading: true, isError: false }));
+    try {
+      const contract = await sdk.getContract(
+        "0x4456ce0eBadB36Ad298Ff19ce4aC18075c4407Cb",
+        ABI
+      );
+      const data = await contract.call("getProductDetails", [BigInt(productCode)]);
+      console.log({ data });
+      setProductData(data);
+      setPreviewState((prev) => ({ ...prev, isLoading: false }));
+    } catch (error) {
+      console.error("Smart contract error: ", error);
+      setPreviewState((prev) => ({
+        ...prev,
+        isLoading: false,
+        isError: true,
+        errorMessage:
+          (error as TransactionError)?.reason ??
+          "An error occurred while fetching product details",
+      }));
+    }
+  };
+
   useEffect(() => {
     setIsMounted(true);
     return () => {
@@ -159,8 +186,18 @@ const Page = () => {
             newScanner.clear();
 
             setScanResult(result);
-            console.log({ result: BigInt(result) });
-            setPreviewState((prev) => ({
+           console.log({result: BigInt(result)})
+          fetchProductDetails(result);
+           setPreviewState((prev)=> ({
+            ...prev,
+            isLoading:true
+          }))
+          try {
+            const contract = await sdk.getContract("0x4456ce0eBadB36Ad298Ff19ce4aC18075c4407Cb", ABI);
+            const data = await contract.call("getProductDetails", [BigInt(result)])
+            console.log({data})
+            setProductData(data)
+            setPreviewState((prev)=> ({
               ...prev,
               isLoading: true,
             }));
@@ -234,6 +271,8 @@ const Page = () => {
   return (
     <div className="bg-[#F5F6FA] min-h-screen flex flex-col">
       <Navbar />
+      <ToastContainer/>
+
       <div className="flex flex-1">
         <GeneralSidebar />
 
@@ -279,12 +318,16 @@ const Page = () => {
                     <input
                       className="w-full px-4 py-2 mb-4 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-[#3D28F3]"
                       placeholder="Enter Product ID"
-                      onChange={(e) => setScanResult(e.target.value)}
+                       onChange={(e) => setScanResult(e.target.value)}
                     />
-                    <Button
-                      className="bg-[#3D28F3] w-full text-white py-2"
-                      onClick={() => handleManualFetch(scanResult || "")}
-                    >
+                    <Button className="bg-[#3D28F3] w-full text-white py-2"
+                      onClick={() => {
+                              if (scanResult) {
+                                fetchProductDetails(scanResult);
+                              } else {
+                                toast.error("Please enter a valid Product ID.");
+                              }
+                            }}>
                       Track Product
                     </Button>
                   </div>
