@@ -78,7 +78,6 @@ const handleRouting = (selectedRole: number) => {
     router.push(route);
   }
 };
- 
 
   return (
     <div className="grid">
@@ -104,10 +103,15 @@ const handleRouting = (selectedRole: number) => {
             method: "assignRole",
             params: [String(account?.address), role]
           })}
-          onTransactionConfirmed={async () => { 
+          onError={(error)=> {
+console.log({error})
+          }}
+          onTransactionConfirmed={(reciept) => { 
+            console.log({reciept})
             // alert("Role assigned successfully!");
-            handleRouting(role);
             setUserRole(String(role));
+            handleRouting(role);
+            
           }}
           // onError={(error) => alert(`Error: ${error.message}`)}
           disabled={!role || !account}
