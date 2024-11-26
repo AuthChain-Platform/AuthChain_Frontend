@@ -200,7 +200,7 @@ export default function AddProductForm() {
   const dateToEpoch = (dateString: string) => {
     const myDate = new Date(dateString);
     const epochTime = myDate.getTime() / 1000.0;
-    return epochTime;
+    return BigInt(epochTime);
   };
 
   
