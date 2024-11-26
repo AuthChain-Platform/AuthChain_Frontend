@@ -9,7 +9,7 @@ import { createWallet, inAppWallet } from "thirdweb/wallets";
 import { ConnectButton, useActiveAccount } from "thirdweb/react";
 import { client } from "@/constants/client";
 import { defineChain } from "thirdweb";
-import { createThirdwebClient } from "thirdweb";
+
 
 const Navbar = () => {
   const router = useRouter();

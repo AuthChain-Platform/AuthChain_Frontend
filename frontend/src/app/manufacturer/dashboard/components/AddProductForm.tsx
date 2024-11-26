@@ -46,26 +46,6 @@ export default function AddProductForm() {
   const [submitError, setSubmitError] = useState("");
 
 
-  const handleNumberInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-    const { name, value } = e.target;
-    setFormData((prev) => ({
-      ...prev,
-      [name]: value ? Number(value) : 0,
-    }));
-  };
-
-  const handleStringInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-    const { name, value } = e.target;
-    setFormData((prev) => ({
-      ...prev,
-      [name]: value,
-    }));
-    // Clear error when user starts typing
-    setErrors((prev) => ({
-      ...prev,
-      [name]: "",
-    }));
-  };
 
   const handleImageChange = async (e: React.ChangeEvent<HTMLInputElement>) => {
     const file = e.target.files?.[0];
@@ -228,7 +208,7 @@ export default function AddProductForm() {
   return (
     <Card className="w-full max-w-4xl mx-auto">
       <CardContent className="p-6">
-        <form className="space-y-6">
+        <div className="space-y-6">
           {/* Form Fields */}
          {/* Photo Upload Section */}
          <div className="flex justify-center mb-8">
@@ -432,6 +412,7 @@ export default function AddProductForm() {
 
             <TransactionButton
                 transaction={async() =>
+                  
                  
                   prepareContractCall({
                     contract,
@@ -441,7 +422,7 @@ export default function AddProductForm() {
                       formData.productName,
                       BigInt(formData.price),
                       BigInt(formData.batchId),
-                      BigInt(dateToEpoch(formData.expiryDate)),
+                      dateToEpoch(formData.expiryDate),
                       formData.productDescription,
                       BigInt(formData.batchQuantity),
                       BigInt(formData.availabilityQuantity),
@@ -459,16 +440,16 @@ export default function AddProductForm() {
                   router.push("/manufacturer/products");
                   setIsProductAdded(true);
                 }}
-                disabled={ isSubmitting}
+                disabled={!account || isSubmitting}
                 className="w-[200px] bg-purple-600 hover:bg-purple-700"
               >
-                {
+                {!account ? "Connect Wallet" :
                    isSubmitting
                   ? "Adding Product.."
                   : "Add Product"}
               </TransactionButton>
           </div>
-        </form>
+        </div>
 
       </CardContent>
     </Card>
