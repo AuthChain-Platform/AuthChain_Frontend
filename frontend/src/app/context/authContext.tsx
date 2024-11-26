@@ -6,6 +6,7 @@ interface AuthContextType {
   userRole: string | undefined;
   setUserRole: (role: string) => void;
   setIsRegistered: (isRegistered: boolean) => void;
+  setIsProductAdded: (isProductAdded: boolean) => void;
   isRegistered: boolean;
 }
 
@@ -29,10 +30,13 @@ interface AuthProviderProps {
 export function AuthProvider({ children }: AuthProviderProps) {
   const [userRole, setuserRole] = useState("");
   const [isRegistered, setIsRegistered] = useState(false);
+  const [isProductAdded, setIsProductAdded] = useState(false);
+
 
   const value: AuthContextType = {
     userRole,
     setIsRegistered: setIsRegistered,
+    setIsProductAdded: setIsProductAdded,
     isRegistered: isRegistered,
     setUserRole: setuserRole,
   };
