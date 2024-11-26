@@ -5,6 +5,8 @@ import Image from 'next/image';
 import { Button } from "@/components/ui/button";
 import { useRouter } from "next/navigation";
 import { useActiveAccount } from "thirdweb/react";
+import { ToastContainer, toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 
 
 const Hero = () => {
@@ -17,7 +19,7 @@ const Hero = () => {
 
   const handleGetStarted = () => {
     if (!account) {
-      alert("Please connect your wallet first!");
+      toast.error("Please connect your wallet first!");
     } else {
       router.push("/select_role");
     }
@@ -25,6 +27,8 @@ const Hero = () => {
 
   return (
     <div className="relative h-[600px]">
+      <ToastContainer/>
+      
       <Image
         src="/hero-bg.png"
         alt="Hero background"
