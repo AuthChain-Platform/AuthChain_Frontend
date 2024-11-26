@@ -14,6 +14,7 @@ import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 
 
+
 // Define role routes in a type-safe way
 const ROLE_ROUTES = {
   2: '/manufacturer/complete_reg',
@@ -25,9 +26,10 @@ export default function SelectRole() {
   const { mutate: sendTransaction } = useSendTransaction();
   const router = useRouter();
   const [role, setRole] = useState(0);
-  const {setUserRole} = useAuthContext();
+  const {setUserRole, isRegistered} = useAuthContext();
   const account = useActiveAccount();
   const userRoleAddress = "0x9b17d06296D01ab7BD42e2e55a517980fFFE9c61";
+  
 
 const contract = getContract({
   client: client,
@@ -62,6 +64,12 @@ useEffect(() => {
     router.push('/');
   }
 }, [account, router]);
+
+useEffect(() => {
+  if (isRegistered == true) {
+    router.push('/manufacturer/dashboard');
+  }
+}, [isRegistered, router]);
  
 
 
