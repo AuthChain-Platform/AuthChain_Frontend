@@ -1,10 +1,16 @@
+'use client';
 import { Box, Package, AlertCircle, Clock } from "lucide-react";
 import { Card, CardContent } from "@/components/ui/card";
+import { ThirdwebSDK, TransactionError } from "@thirdweb-dev/sdk";
+import { useState, useEffect } from "react";
+import { ABI } from "@/constants/abi";
 
-const metrics = [
+
+
+const metricData = [
   {
     title: "Total Products",
-    value: "40,689",
+    value: "0",
     icon: Box,
     color: "bg-blue-100",
     iconColor: "text-blue-500"
@@ -32,7 +38,41 @@ const metrics = [
   }
 ];
 
+
+
+
+const sdk = new ThirdwebSDK("lisk-sepolia-testnet");
+
+
+
 export function DashboardMetrics() {
+const [metrics, setmetrics] = useState(metricData)
+
+
+const getProductMetrics = async ()=>{
+  try {
+    const contract =  await sdk.getContract("0x4456ce0eBadB36Ad298Ff19ce4aC18075c4407Cb", ABI)
+  
+    const res = await contract.call("getAllProducts", [])
+    console.log({res})
+    setmetrics((prev)=> {
+      return prev.map((item)=> item.title === "Total Products"? {
+        ...item,
+        value: `${res?.length ?? 0}`
+      }:item)
+    })
+  } catch (error) {
+    console.error("Smart contract err: ", error)
+  }
+ 
+}
+useEffect(() => {
+getProductMetrics()
+
+  
+}, [])
+
+
   return (
     <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4">
       {metrics.map((metric) => (
