@@ -2,6 +2,10 @@
 import React from "react";
 import { Menu, Search, ChevronDown } from "lucide-react";
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
+import { ConnectButton, useActiveAccount } from "thirdweb/react";
+import { client } from "@/constants/client";
+import { defineChain } from "thirdweb";
+import {lisk} from "@/constants/chain";
 
 const DashboardHeader = () => {
   return (
@@ -23,10 +27,19 @@ const DashboardHeader = () => {
           <AvatarFallback>UN</AvatarFallback>
         </Avatar>
         <div className="flex items-center">
-          <span className="px-3 py-1.5 bg-blue-50 text-blue-600 rounded-lg text-sm font-medium">
-            0x6F3...E89
-          </span>
-          <ChevronDown className="h-4 w-4 text-gray-400 ml-1" />
+    
+        <ConnectButton
+            client={client} 
+            chain={lisk}
+            appMetadata={{
+              name: "Authentic Chain",
+              url: "https://",
+            }}
+            connectButton={{
+              label: "Sign In",
+              className: "bg-blue text-white rounded-[20px] px-4 py-2",
+            }}
+          />
         </div>
       </div>
     </div>
