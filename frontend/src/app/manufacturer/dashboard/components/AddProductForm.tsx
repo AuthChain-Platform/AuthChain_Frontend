@@ -13,7 +13,7 @@ import { lisk } from "@/constants/chain";
 import { getContract } from "thirdweb";
 import Router from "next/router";
 import { useAuthContext } from "@/app/context/authContext";
-
+import { pinata } from "@/constants/pinata";
 
 
 interface FormErrors {
@@ -80,6 +80,22 @@ export default function AddProductForm() {
         }));
       }
     }
+  };
+
+
+  const uploadImageToIPFS = async () => {
+    if (!formData.productImage) {
+      throw new Error("No image file selected");
+    }
+    const buffer = await (await fetch(formData.productImage)).arrayBuffer();
+    // Create a new File object
+    const file = new File([buffer], (formData.productImage as unknown as File).name, {
+      type: (formData.productImage as unknown as File).type,
+    });
+
+    const response = await pinata.upload.file(file);
+    return `https://ipfs.io/ipfs/${response.IpfsHash}`;
+
   };
 
   const productAddress = "0xe71aa05fE1743f8C5db3160Cf3a7d6004E3866aF";
@@ -261,7 +277,9 @@ export default function AddProductForm() {
                 type="text"
                 placeholder="Enter your product name"
                 value={formData.productName}
-                onChange={handleStringInputChange}
+                onChange={(e) =>
+                  setFormData({ ...formData, productName:  e.target.value})
+                }
                 className={errors.productName ? "border-red-500" : ""}
               />
               {errors.productName && (
@@ -278,7 +296,9 @@ export default function AddProductForm() {
                 type="number"
                 placeholder="Enter batch Id"
                 value={formData.batchId}
-                onChange={handleStringInputChange} 
+                onChange={(e) =>
+                  setFormData({ ...formData, batchId:  Number(e.target.value) })
+                }
                 className={errors.batchId ? "border-red-500" : ""}
               />
               {errors.batchId && (
@@ -295,7 +315,9 @@ export default function AddProductForm() {
                 type="number"
                 placeholder="Enter product quantity"
                 value={formData.price}
-                onChange={handleNumberInputChange}
+                onChange={(e) =>
+                  setFormData({ ...formData, price:  Number(e.target.value) })
+                }
                 className={errors.quantity ? "border-red-500" : ""}
               />
               {errors.quantity && (
@@ -311,7 +333,9 @@ export default function AddProductForm() {
                 id="Expiry Date"
                 type="datetime-local"
                 value={formData.expiryDate}
-                onChange={handleNumberInputChange}
+                onChange={(e) =>
+                  setFormData({ ...formData, expiryDate:  e.target.value })
+                }
                 className={errors.expiryDate ? "border-red-500" : ""}
               />
               {errors.expiryDate && (
@@ -327,7 +351,10 @@ export default function AddProductForm() {
                 id="productCode"
                 type="number"
                 value={formData.productCode}
-                onChange={handleNumberInputChange}
+               
+                onChange={(e) =>
+                  setFormData({ ...formData, productCode:  Number(e.target.value) })
+                }
                 className={errors.expiryDate ? "border-red-500" : ""}
               />
               {errors.productCode && (
@@ -356,7 +383,9 @@ export default function AddProductForm() {
                 id="batchQuantity"
                 type="number"
                 value={formData.batchQuantity}
-                onChange={handleNumberInputChange}
+                onChange={(e) =>
+                  setFormData({ ...formData, batchQuantity:  Number(e.target.value) })
+                }
                 className={errors.batchQuantity ? "border-red-500" : ""}
               />
               {errors.batchQuality && (
@@ -373,7 +402,9 @@ export default function AddProductForm() {
                 id="availabilityQuantity"
                 type="number"
                 value={formData.availabilityQuantity}
-                onChange={handleNumberInputChange}
+                onChange={(e) =>
+                  setFormData({ ...formData, availabilityQuantity:  Number(e.target.value) })
+                }
                 className={errors.availabilityQuantity ? "border-red-500" : ""}
               />
               {errors.availabilityQuantity && (
@@ -410,12 +441,13 @@ export default function AddProductForm() {
                       formData.productName,
                       BigInt(formData.price),
                       BigInt(formData.batchId),
-                      dateToEpoch(formData.expiryDate),
+                      BigInt(dateToEpoch(formData.expiryDate)),
                       formData.productDescription,
                       BigInt(formData.batchQuantity),
                       BigInt(formData.availabilityQuantity),
                       // await uploadImageToIPFS(),
                       "https://ipfs.io/ipfs/bafybeifvlsvc5g3staanjseaxxe5a6djsi44rca3zvtko3ya7z2a7kkgle",
+                      0,
                     ],
                   })
                 }
@@ -424,15 +456,14 @@ export default function AddProductForm() {
                   setIsSubmitting(false);
                 }}
                 onTransactionConfirmed={() => {
-                  router.push("/manufacturer/dashboard");
+                  router.push("/manufacturer/products");
                   setIsProductAdded(true);
                 }}
-                disabled={!account || isSubmitting}
+                disabled={ isSubmitting}
                 className="w-[200px] bg-purple-600 hover:bg-purple-700"
               >
-                {!account
-                  ? "Connect Wallet"
-                  : isSubmitting
+                {
+                   isSubmitting
                   ? "Adding Product.."
                   : "Add Product"}
               </TransactionButton>
