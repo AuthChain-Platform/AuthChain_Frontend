@@ -17,7 +17,7 @@ const metricData = [
   },
   {
     title: "Active orders",
-    value: "10293",
+    value: "0",
     icon: Package,
     color: "bg-yellow-100",
     iconColor: "text-yellow-500"
@@ -51,7 +51,7 @@ const [metrics, setmetrics] = useState(metricData)
 
 const getProductMetrics = async ()=>{
   try {
-    const contract =  await sdk.getContract("0x4456ce0eBadB36Ad298Ff19ce4aC18075c4407Cb", ABI)
+    const contract =  await sdk.getContract("0x3D8ceA276f85Dd8b373f2Db22Ac3b4A870cF15ae", ABI)
   
     const res = await contract.call("getAllProducts", [])
     console.log({res})
